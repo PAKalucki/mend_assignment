@@ -6,7 +6,6 @@ resource "kubernetes_service_account" "lbc_service_account" {
     namespace = "kube-system"
     annotations = {
       "eks.amazonaws.com/role-arn" = data.tfe_outputs.aws.values.elb_controller_iam_role
-      // eksctl create iamserviceaccount --cluster=<clusterName> --name=<serviceAccountName> --attach-role-arn=<customRoleARN>
     }
   }
 } 
