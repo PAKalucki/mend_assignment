@@ -13,6 +13,11 @@ resource "helm_release" "hello_world_aws" {
     name = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/scheme"
     value = "internet-facing"
   }
+
+  set {
+    name = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/target-type"
+    value = "ip"
+  }
 }
 
 resource "helm_release" "hello_world_azure" {
@@ -28,6 +33,6 @@ resource "helm_release" "hello_world_azure" {
 
   set {
     name = "ingress.annotations.kubernetes\\.io/ingress\\.class"
-    value = "azure-application-gateway"
+    value = "azure/application-gateway"
   }
 }
