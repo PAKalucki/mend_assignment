@@ -1,8 +1,8 @@
 resource "helm_release" "hello_world_aws" {
   provider = helm.aws
 
-  name = "hello_world"
-  chart      = "./hello_world"
+  name = "hello-world"
+  chart      = "./hello-world"
 
   set {
     name = "ingress.className"
@@ -18,8 +18,8 @@ resource "helm_release" "hello_world_aws" {
 resource "helm_release" "hello_world_azure" {
   provider = helm.azure
 
-  name = "hello_world"
-  chart      = "./hello_world"
+  name = "hello-world"
+  chart      = "./hello-world"
 
   set {
     name = "ingress.className"
@@ -28,6 +28,6 @@ resource "helm_release" "hello_world_azure" {
 
   set {
     name = "ingress.annotations.kubernetes\\.io/ingress\\.class"
-    value = "azure/application-gateway"
+    value = "azure-application-gateway"
   }
 }

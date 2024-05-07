@@ -1,4 +1,4 @@
-# Default values for hello_world.
+# Default values for hello-world.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -45,7 +45,7 @@ service:
 
 ingress:
   enabled: true
-  className: "azure-application-gateway"
+  className: ""
   annotations: {}
     # kubernetes.io/ingress.class: azure/application-gateway
     # kubernetes.io/ingress.class: alb
@@ -54,7 +54,7 @@ ingress:
   hosts:
       paths:
         - path: /
-          pathType: Exact
+          pathType: ImplementationSpecific
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

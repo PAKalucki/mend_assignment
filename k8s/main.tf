@@ -30,11 +30,11 @@ provider "helm" {
   alias = "aws"
 
   kubernetes {
-    host                   = data.tfe_outputs.aws.outputs.cluster_endpoint
-    cluster_ca_certificate = data.tfe_outputs.aws.outputs.cluster_ca_cert
+    host                   = data.tfe_outputs.aws.values.cluster_endpoint
+    cluster_ca_certificate = base64decode(data.tfe_outputs.aws.values.cluster_ca_cert)
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", data.tfe_outputs.aws.outputs.cluster_name]
+      args        = ["eks", "get-token", "--cluster-name", data.tfe_outputs.aws.values.cluster_name]
       command     = "aws"
     }
   }
@@ -43,11 +43,11 @@ provider "helm" {
 provider "kubernetes" {
   alias = "aws"
   
-  host                   = data.tfe_outputs.aws.outputs.cluster_endpoint
-  cluster_ca_certificate = data.tfe_outputs.aws.outputs.cluster_ca_cert
+  host                   = data.tfe_outputs.aws.values.cluster_endpoint
+  cluster_ca_certificate = base64decode(data.tfe_outputs.aws.values.cluster_ca_cert)
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.tfe_outputs.aws.outputs.cluster_name]
+    args        = ["eks", "get-token", "--cluster-name", data.tfe_outputs.aws.values.cluster_name]
     command     = "aws"
   }
 }
@@ -56,24 +56,24 @@ provider "helm" {
   alias = "azure"
 
   kubernetes {
-    host                   = data.tfe_outputs.azure.outputs.aks_host
-    username               = data.tfe_outputs.azure.outputs.aks_username
-    password               = data.tfe_outputs.azure.outputs.aks_password
-    client_certificate     = data.tfe_outputs.azure.outputs.aks_client_certificate
-    client_key             = data.tfe_outputs.azure.outputs.aks_client_key
-    cluster_ca_certificate = data.tfe_outputs.azure.outputs.aks_cluster_ca_certificate
+    host                   = data.tfe_outputs.azure.values.aks_host
+    username               = data.tfe_outputs.azure.values.aks_username
+    password               = data.tfe_outputs.azure.values.aks_password
+    client_certificate     = data.tfe_outputs.azure.values.aks_client_certificate
+    client_key             = data.tfe_outputs.azure.values.aks_client_key
+    cluster_ca_certificate = data.tfe_outputs.azure.values.aks_cluster_ca_certificate
   }
 }
 
 provider "kubernetes" {
   alias = "azure"
 
-  host                   = data.tfe_outputs.azure.outputs.aks_host
-  username               = data.tfe_outputs.azure.outputs.aks_username
-  password               = data.tfe_outputs.azure.outputs.aks_password
-  client_certificate     = data.tfe_outputs.azure.outputs.aks_client_certificate
-  client_key             = data.tfe_outputs.azure.outputs.aks_client_key
-  cluster_ca_certificate = data.tfe_outputs.azure.outputs.aks_cluster_ca_certificate
+  host                   = data.tfe_outputs.azure.values.aks_host
+  username               = data.tfe_outputs.azure.values.aks_username
+  password               = data.tfe_outputs.azure.values.aks_password
+  client_certificate     = data.tfe_outputs.azure.values.aks_client_certificate
+  client_key             = data.tfe_outputs.azure.values.aks_client_key
+  cluster_ca_certificate = data.tfe_outputs.azure.values.aks_cluster_ca_certificate
 }
 
 

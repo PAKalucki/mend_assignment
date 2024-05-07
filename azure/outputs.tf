@@ -4,6 +4,7 @@ output "aks_credentials" {
 
 output "aks_host" {
   value = azurerm_kubernetes_cluster.this.kube_admin_config.0.host
+  sensitive = true
 }
 
 output "aks_username" {
@@ -29,4 +30,8 @@ output "aks_client_key" {
 output "aks_cluster_ca_certificate" {
   value = base64decode(azurerm_kubernetes_cluster.this.kube_admin_config.0.cluster_ca_certificate)
   sensitive = true
+}
+
+output "ingress_application_gateway" {
+  value = azurerm_kubernetes_cluster.this.ingress_application_gateway
 }
